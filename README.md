@@ -1,12 +1,9 @@
-Getting-and-Cleaning-Data-Course-Project
-========================================
-
 THIS IS THE README FILE FOR DATA CLEAN - COURSE PROJECT ASSIGNMENT
 Please follow the steps listed below to get to tidy data set
 
-Step 1) Download the UCI HAR Dataset and unzip it to extract(unpack) the files to a folder name "UCI HAR Dataset". This will be your working directory.
+Step 1) Download the UCI HAR Dataset and unzip it to extract(unpack) the files to a folder name "UCI HAR Dataset".
 
-For example onmy machine it getwd(): "D:\BigData\RLWD\data2\UCI HAR Dataset"
+For example: D:\BigData\RLWD\data2\UCI HAR Dataset
 
 Step 2) Open R-studio and set your working directory as "UCI HAR Dataset"
 
@@ -27,9 +24,9 @@ README.txt
 run_analysis.R
 
 
-Lets review the code line by line to explain how to get the tidydataset which has subject and activity means. In all we have 30 subjects and each subject has 6 activities. So we should have 180 rows of observation plus one additional row for header to list the column variables. Comments for the steps are embedded in the code as we scroll down code line by line.
+Lets review the code line by line to explain how to get the tidydataset which has subject and activity means. In all we have 30 subjects and each subject has 6 activities.
+So we should have 180 rows of observation plus one additional row for header to list the column variables. Comments for the steps are embedded in the code as we scroll down code line by line.
 
-# R-CODE "run_analysis.R"
 
 # Load the R-packages dplyr, tidyr
 library(dplyr)
@@ -58,7 +55,7 @@ ytest <- tbl_df(y_test)
 subject_test <- read.table("./test/subject_test.txt")
 subjecttest <- tbl_df(subject_test)
 
-# In the next few lines, we are joining the two data set to get the activity_labels map to correct activity code like 1 = WALKING, 2 = WALKING_UPSTAIR etc
+# In lines 60-63 of the code, we are joining the two data set to get the activity_labels map to correct activity code like 1 = WALKING, 2 = WALKING_UPSTAIR etc
 
 by_activity <- read.table("./activity_labels.txt")
 tp <- join(y_test, by_activity)
@@ -68,6 +65,8 @@ activity_test <- tbl_df(tp2)
 # This is to just clear the data and values in the environment variables which are not being used anymore.
 
 rm(tp, tp2, y_test, subject_test, x_test)
+
+
 
 # Repitition of pervious steps to read the Training Dataset and scope the data
 
@@ -137,6 +136,8 @@ cran
 
 final_data <- select(cran, contains("subject"), contains("activity"), contains("\\mean()"), -contains("meanFreq"), contains("std()"))
 
+
+
 # The final_data is the one which provides PART-3 of the solution
 
 df <- tbl_df(final_data)
@@ -190,5 +191,4 @@ write.table(tidydata, file = "./final_tidydataset.txt", row.name = FALSE)
 # "x <- read.table("./final_tidydataset.txt")"
 # "View(x)"
 
-
-
+5a13b3948e050ffacd0b79c349bf898fe65435af
